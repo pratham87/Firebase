@@ -9,11 +9,11 @@
   * Copy paste the config in function setup()
   * Security:
     * Go to Database 
-    * Go to Rules and make write as false.
+    * Go to Rules and make write as false (if you want to deny writing permission to db).
     *  ```{
            "rules": {
              ".read": true,
              ".write": false
             }
            } ```
-    * source: http://shiffman.net/a2z/firebase/
+  * Source: http://shiffman.net/a2z/firebase/
