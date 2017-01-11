@@ -7,3 +7,13 @@
   * Click on Add Firebase to your web app
   * Copy paste <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script> in index.html
   * Copy paste the config in function setup()
+  * Security:
+    * Go to Database 
+    * Go to Rules and make write as false.
+    *  ```{
+           "rules": {
+             ".read": true,
+             ".write": false
+            }
+           } ```
+    * source: http://shiffman.net/a2z/firebase/
