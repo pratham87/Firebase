@@ -1,12 +1,18 @@
 var canvas;
 var score = 0;
 var button;
+var userName;
+var submitButton;
+var db;
 
 function setup() {
-    canvas = createCanvas(500, 500);
+    canvas = createCanvas(400, 400);
     button = createButton("Press Button");
     button.mousePressed(increment);
     button.position(0, height + 20);
+    userName = createInput("name");
+    submitButton = createButton("Submit");
+    submitButton.mousePressed(submitScore);
 
     var config = {
         apiKey: "AIzaSyCf7ger-2WgkWOYXFDUVJnXKPap0kV4o3o",
@@ -16,11 +22,57 @@ function setup() {
         messagingSenderId: "94795301951"
     };
     firebase.initializeApp(config);
-    console.log("Firebase"); //Printing data to console to make sure the code above is executing
+
+    // Get Firebase db instance in a variable
+    db = firebase.database();
+
+    //Retrieve data
+    var ref = db.ref("scores");
+    ref.on("value", data_retrieved, errData);
+}
+
+function data_retrieved(data) {
+    console.log(data);
+    var scores = data.val(); // array of data from firebase
+    var keys = Object.keys(scores);
+    console.log(keys);
+
+    for (var i = 0; i < keys.length; i++) {
+        var k = keys[i];
+        var name = scores[k].name;
+        var score = scores[k].score;
+    }
+
+    console.log(name, score);
+}
+
+function errData(err) {
+    console.log("Error");
+    console.log(err);
 }
 
 function increment() {
     score++;
+}
+
+function submitScore() {
+    var data = {
+        name: userName.value(),
+        score: score
+    }
+    console.log(data);
+
+    // Create reference to score
+    var ref = db.ref("scores");
+
+    // //Creating sampe data to push to firebase
+    // var data = {
+    //     name: "John",
+    //     score: 51
+    // }
+
+    //Pushing data to firebase
+    ref.push(data);
 }
 
 function draw() {
