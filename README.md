@@ -18,7 +18,7 @@
              }
            } ```
   
-  * Steps to write date to firebase:
+  * Steps to write data to firebase:
     * Get a reference to the database service ```var db = firebase.database();```
     * Get reference to scores ```var ref = db.ref("scores");```
     * Pushing data to firebase ```ref.push(data);```
