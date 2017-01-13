@@ -7,12 +7,16 @@ var db;
 
 function setup() {
     canvas = createCanvas(400, 400);
+    canvas.parent("game");
     button = createButton("Press Button");
     button.mousePressed(increment);
-    button.position(0, height + 20);
+    button.parent("game");
+    // button.position(0, height + 60);
     userName = createInput("name");
+    userName.parent("game");
     submitButton = createButton("Submit");
     submitButton.mousePressed(submitScore);
+    submitButton.parent("game");
 
     var config = {
         apiKey: "AIzaSyCf7ger-2WgkWOYXFDUVJnXKPap0kV4o3o",
@@ -32,6 +36,13 @@ function setup() {
 }
 
 function data_retrieved(data) {
+
+    //selectAll creates an array of selected elements
+    // var scorelisting = selectAll(".scorelisting");
+    // for (var i = 0; i < scorelisting.length; i++) {
+    //     scorelisting[i].remove();
+    // }
+
     console.log(data);
     var scores = data.val(); // array of data from firebase
     var keys = Object.keys(scores);
@@ -44,6 +55,11 @@ function data_retrieved(data) {
     }
 
     console.log(name, score);
+
+    //Create score list on html
+    var li = createElement("li", name + ":" + score);
+    // li.class("scorelisting");
+    li.parent("scorelist");
 }
 
 function errData(err) {
