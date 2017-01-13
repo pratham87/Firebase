@@ -38,10 +38,10 @@ function setup() {
 function data_retrieved(data) {
 
     //selectAll creates an array of selected elements
-    // var scorelisting = selectAll(".scorelisting");
-    // for (var i = 0; i < scorelisting.length; i++) {
-    //     scorelisting[i].remove();
-    // }
+    var scorelisting = selectAll(".scorelisting");
+    for (var i = 0; i < scorelisting.length; i++) {
+        scorelisting[i].remove();
+    }
 
     console.log(data);
     var scores = data.val(); // array of data from firebase
@@ -52,14 +52,14 @@ function data_retrieved(data) {
         var k = keys[i];
         var name = scores[k].name;
         var score = scores[k].score;
+
+        //Create score list on html
+        var li = createElement("li", name + ":" + score);
+        li.class("scorelisting");
+        li.parent("scorelist");
     }
 
     console.log(name, score);
-
-    //Create score list on html
-    var li = createElement("li", name + ":" + score);
-    // li.class("scorelisting");
-    li.parent("scorelist");
 }
 
 function errData(err) {
