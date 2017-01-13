@@ -2,7 +2,7 @@
 * Library used: p5.js
 * It basically saves the data (score) in firebase.
 * Steps to get started:
-  * Go to https://console.firebase.google.com
+  * Go to [Firebase](https://console.firebase.google.com)
   * Go to Console
   * Click on Add Firebase to your web app
   * Copy paste <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script> in index.html
@@ -26,5 +26,7 @@
   * Steps to retrieve data from firebase:
     * Get reference to scores ```var ref = db.ref("scores");```
     * Call on method ```ref.on("value", data_retrieved, errData);```
+  
+  * Demo at: https://pratham87.github.io/Firebase/
   
   * Source: http://shiffman.net/a2z/firebase/
